@@ -1,0 +1,10 @@
+# -----------------------------------------------
+# AI Excuse Generator - Required Dependencies
+# -----------------------------------------------
+
+# requests: Used to make HTTP API calls to the
+#           locally running Ollama server (localhost:11434).
+#           This is how our Python code talks to the LLM.
+requests>=2.31.0
+
+
