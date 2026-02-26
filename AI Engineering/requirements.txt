@@ -8,3 +8,7 @@
 requests>=2.31.0
 
 
+# gradio: Used to create a web-based UI for our
+#          chatbot and excuse generator apps.
+#          Opens a local web page in your browser.
+gradio>=4.0.0
