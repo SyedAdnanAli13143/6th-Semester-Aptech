@@ -1,0 +1,5 @@
+the quick brown fox jumps over the lazy dog the cat sat the cat ran
+a little learning is a dangerous thing drink deep or taste not
+big data needs big tools but the ideas are small and simple
+hadoop stores data in blocks and the blocks are spread around
+the map step reads data the reduce step combines data
