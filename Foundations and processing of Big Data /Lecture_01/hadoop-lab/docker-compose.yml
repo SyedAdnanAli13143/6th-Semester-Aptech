@@ -1,0 +1,54 @@
+x-hadoop-env: &hadoop-env
+  CORE-SITE.XML_fs.defaultFS: hdfs://namenode:9000
+  CORE-SITE.XML_hadoop.http.staticuser.user: root
+  HDFS-SITE.XML_dfs.replication: "1"
+  HDFS-SITE.XML_dfs.namenode.rpc-address: namenode:9000
+  HDFS-SITE.XML_dfs.namenode.datanode.registration.ip-hostname-check: "false"
+  MAPRED-SITE.XML_mapreduce.framework.name: yarn
+  MAPRED-SITE.XML_yarn.app.mapreduce.am.env: HADOOP_MAPRED_HOME=/opt/hadoop
+  MAPRED-SITE.XML_mapreduce.map.env: HADOOP_MAPRED_HOME=/opt/hadoop
+  MAPRED-SITE.XML_mapreduce.reduce.env: HADOOP_MAPRED_HOME=/opt/hadoop
+  YARN-SITE.XML_yarn.resourcemanager.hostname: resourcemanager
+  YARN-SITE.XML_yarn.nodemanager.pmem-check-enabled: "false"
+  YARN-SITE.XML_yarn.nodemanager.vmem-check-enabled: "false"
+  YARN-SITE.XML_yarn.nodemanager.aux-services: mapreduce_shuffle
+
+services:
+  namenode:
+    image: apache/hadoop:3.3.6
+    hostname: namenode
+    user: root
+    command: ["hdfs", "namenode"]
+    ports:
+      - 9870:9870
+      - 9000:9000
+    environment:
+      <<: *hadoop-env
+      ENSURE_NAMENODE_DIR: /tmp/hadoop-root/dfs/name
+
+  datanode:
+    image: apache/hadoop:3.3.6
+    user: root
+    command: ["hdfs", "datanode"]
+    environment:
+      <<: *hadoop-env
+    depends_on: [namenode]
+
+  resourcemanager:
+    image: apache/hadoop:3.3.6
+    hostname: resourcemanager
+    user: root
+    command: ["yarn", "resourcemanager"]
+    ports:
+      - 8088:8088
+    environment:
+      <<: *hadoop-env
+    depends_on: [namenode]
+
+  nodemanager:
+    image: apache/hadoop:3.3.6
+    user: root
+    command: ["yarn", "nodemanager"]
+    environment:
+      <<: *hadoop-env
+    depends_on: [resourcemanager]
