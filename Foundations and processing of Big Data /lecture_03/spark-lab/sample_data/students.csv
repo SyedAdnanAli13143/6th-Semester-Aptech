@@ -1,0 +1,16 @@
+student_id,name,course,score,passed
+S001,Ali,Math,82,1
+S002,Sara,Math,45,0
+S003,Omar,Math,71,1
+S004,Fatima,Math,90,1
+S005,Hassan,Math,38,0
+S001,Ali,Science,76,1
+S002,Sara,Science,55,1
+S003,Omar,Science,48,0
+S004,Fatima,Science,88,1
+S005,Hassan,Science,61,1
+S001,Ali,English,68,1
+S002,Sara,English,73,1
+S003,Omar,English,52,1
+S004,Fatima,English,84,1
+S005,Hassan,English,29,0
